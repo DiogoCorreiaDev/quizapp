@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"> 
+
+<h:head>
+	 <title>Criar Quiz</title>
+	 <style>
+	 #titulo {
+	 	font-weight: bold;
+	 	font-size: 25px;
+	 }
+	 .perguntas {
+	 	font-weight: bold;
+	 	font-size: 20px;
+	 }
+	 .respostas {
+	 margin-left: 15px;
+	 }
+	 .info {
+     color:green;
+}
+	.error {
+	     color: red;
+	}
+	  body{
+	 background-image: url("#{resource['blur.jpg']}");
+	 background-repeat: no-repeat;
+	 background-size: cover;
+	 font-family: Helvetica, sans-serif;
+	 color: 	white;
+	 text-align: center;
+	 display: flex;
+	 align-items: center;
+	 justify-content: center;
+	 flex-direction: column;
+	 height: 100vh;
+	 }
+	 .bt {
+	 text-align: center;
+	 display: block;
+	 color: #9FC4B2;
+	 background-color: 	white;
+	 border-radius: 5px;
+	 height: 40px;
+	 transition: all 0.2s;
+	 border: 1px solid #9FC4B2;
+	 margin:0 auto;
+	 }
+	 .bt:hover {
+	 color: white;
+	 background-color: 	#9FC4B2;
+	 cursor: pointer;
+	 }
+	 #wrapper {
+	 margin: 0 auto;
+	 border: 1px solid black;
+	 border-radius: 5px;
+	 background-color: white;
+	 color: 	#9FC4B2;
+	 padding: 2rem;
+	 }
+	 </style>
+</h:head> 
+<h:body>
+<div id="wrapper">
+<h1>Criar Quiz</h1>
+<h:form>
+			<p id="titulo">Título do Quiz: <h:inputText required="true" requiredMessage="O título tem de ter no mínimo 3 caracteres e no máximo 50." value="#{criarQuizz.quizTitle}"><f:converter converterId="quizz.TrimConverter" /></h:inputText></p>
+	          	<c:forEach var="perguntaPos" items="#{criarQuizz.listaNumeroPerguntas}">
+		            <p class="perguntas">Pergunta: <h:inputText required="true" requiredMessage="Cada pergunta tem de ter no mínimo 3 caracteres e no máximo 50." value="#{criarQuizz.listaPerguntas[perguntaPos]}"><f:converter converterId="quizz.TrimConverter" /></h:inputText></p>
+		            	<c:forEach var="respostaPos" items="#{criarQuizz.listaNumeroRespostas}">
+		            		<p class="respostas">Resposta possível: <h:inputText required="true" requiredMessage="Cada resposta tem de ter no mínimo 3 caracteres e no máximo 50." value="#{criarQuizz.listaRespostas[perguntaPos*criarQuizz.numeroRespostas+respostaPos]}"><f:converter converterId="quizz.TrimConverter"/></h:inputText></p>
+		            	</c:forEach>
+	          	</c:forEach>
+	     <h:messages infoClass="info" errorClass="error"/> 
+         <p><h:commandButton styleClass="bt" value="Criar Quiz" action="#{criarQuizz.criarQuiz()}"/></p>
+</h:form>
+<h:button styleClass="bt" value="Regressar ao perfil" outcome="Perfil" />
+</div>
+</h:body>
+</html>

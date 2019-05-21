@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"> 
+<h:head>
+	 <title>Estatística #{questionario.title}</title>
+	 <style>
+	 body{
+	 background-image: url("#{resource['blur.jpg']}");
+	 background-repeat: no-repeat;
+	 background-size: cover;
+	 font-family: Helvetica, sans-serif;
+	 color: 	white;
+	 text-align: center;
+	 display: flex;
+	 align-items: center;
+	 justify-content: center;
+	 flex-direction: column;
+	 height: 100vh;
+	 }
+	 .bt {
+	 text-align: center;
+	 display: block;
+	 color: #9FC4B2;
+	 background-color: 	white;
+	 border-radius: 5px;
+	 height: 40px;
+	 transition: all 0.2s;
+	 border: 1px solid #9FC4B2;
+	 margin:0 auto;
+	 }
+	 .bt:hover {
+	 color: white;
+	 background-color: 	#9FC4B2;
+	 cursor: pointer;
+	 }
+	 #wrapper {
+	 margin: 0 auto;
+	 border: 1px solid black;
+	 border-radius: 5px;
+	 background-color: white;
+	 color: 	#9FC4B2;
+	 padding: 2rem;
+	 }
+	 </style>
+</h:head> 
+<h:body>
+<div id="wrapper">
+<h1>Estatística do quizz #{questionario.title}</h1>
+<h:form>
+          <c:forEach var="pergunta" items="#{questionario.listaPerguntas}">
+            <p><h:outputText style="font-weight:bold" value="P: #{pergunta.text}"/></p>
+            <c:forEach var="opcao" items="#{pergunta.listaRespostas}">
+            	<p><h:outputText value="R: #{opcao.text} - #{opcao.getPercentageFromDB()} %"/></p>
+            </c:forEach>
+          </c:forEach>
+          <h:button styleClass="bt" value="Regressar ao perfil" outcome="Perfil" />          
+</h:form>   
+</div>
+</h:body>
+</html>

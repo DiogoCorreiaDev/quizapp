@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+
+<h:head>
+	 <title>Perfil de #{firstName} #{lastName}</title>
+	 <style>
+	 body{
+	 background-image: url("#{resource['blur.jpg']}");
+	 background-repeat: no-repeat;
+	 background-size: cover;
+	 font-family: Helvetica, sans-serif;
+	 color: 	white;
+	 text-align: center;
+	 display: flex;
+	 align-items: center;
+	 justify-content: center;
+	 flex-direction: column;
+	 height: 100vh;
+	 }
+	 table {
+	 margin: 1rem auto;
+	 background-color: white;
+	 color: black;
+	 }
+	 .info {
+     color:green;
+     list-style-type: none;
+	}
+	.error {
+	color: red;
+	list-style-type: none;
+	}
+	table {
+	border: 3px solid black;
+	border-collapse: collapse;
+	}
+	th, td  {
+	border: 1px solid black;
+	padding: 5px;
+	}
+	.bt {
+	 text-align: center;
+	 display: block;
+	 color: #9FC4B2;
+	 background-color: 	white;
+	 border-radius: 5px;
+	 height: 40px;
+	 transition: all 0.2s;
+	 border: 1px solid #9FC4B2;
+	 margin:0 auto;
+	 }
+	 .bt:hover {
+	 color: white;
+	 background-color: 	#9FC4B2;
+	 cursor: pointer;
+	 }
+	 h1 span {
+	 font-size: 1rem;
+	 }
+	 #backup {
+	 background-color: white;
+	 border: 1px solid black;
+	 color: black;
+	 padding: .5rem;
+	 margin-bottom: 1rem;
+
+	 }
+	 #backup p {
+	 margin: 0;
+	 }
+	 #minutos {
+	 width: 10px;
+	 }
+	 #perfil {
+	 margin: 0 auto;
+	 border: 1px solid black;
+	 border-radius: 5px;
+	 background-color: white;
+	 color: 	#9FC4B2;
+	 padding: 1rem;
+	 }
+	 </style>
+</h:head> 
+<h:body>
+<h:panelGroup>
+<div id="perfil">
+    <h1><span>Perfil de:</span> #{firstName} #{lastName} <span>(#{role})</span></h1>
+    <h:form>
+                <p>Escolha um quizz:
+                <h:selectOneMenu value="#{questionario.title}" required="true" requiredMessage="Tem de escolher um quizz!">
+                    <f:selectItems value="#{questionario.listaQuestionarios}"/>
+                </h:selectOneMenu>
+                </p>
+        <h:commandButton styleClass="bt" value="Responder/Alterar resposta a Quizz" action="#{questionario.criaQuizComTitle()}"/>
+        <h:commandButton styleClass="bt" value="Consultar estatística" action="#{questionario.estatisticaComTitle()}"/>
+        
+    </h:form>
+   
+    <c:if test="${role == 'creator' or role == 'admin'}">
+    <h:button styleClass="bt" value="Criar Quizz" outcome="CriaQuizz" />
+     </c:if>
+     
+    <c:if test="${role == 'admin'}">
+    <h:form>
+    <table>
+    <thead> 
+		<tr> 
+		<th>Id</th> 
+		<th>Name</th> 
+		<th>Email</th>
+		<th>Role</th> 
+		</tr> 
+	  </thead> 
+	  <tbody>
+	  
+	  <c:forEach var="utilizador" items="#{user.listaUsers}">
+            <tr>
+            <td><h:outputText value="#{utilizador.idUser}"/></td>
+            <td><h:outputText value="#{utilizador.firstName} #{utilizador.lastName}"/></td>
+            <td><h:outputText value="#{utilizador.email}"/></td>
+            <td>
+            <h:selectOneMenu valueChangeListener="#{user.mudaRole}" onchange="submit()">
+                     <f:attribute name="myId" value="#{utilizador.idUser}" />
+                     <f:attribute name="oldRole" value="#{utilizador.role}" />
+			    <f:selectItem itemValue="#{utilizador.role}" itemLabel="#{utilizador.role}" />
+			    <c:if test="${utilizador.role == 'admin'}">
+				    <f:selectItem itemValue="user" itemLabel="user" />
+					<f:selectItem itemValue="creator" itemLabel="creator" />
+			    </c:if>
+			    <c:if test="${utilizador.role == 'user'}">
+				    <f:selectItem itemValue="admin" itemLabel="admin" />
+					<f:selectItem itemValue="creator" itemLabel="creator" />
+			    </c:if>
+			    <c:if test="${utilizador.role == 'creator'}">
+				    <f:selectItem itemValue="user" itemLabel="user" />
+					<f:selectItem itemValue="admin" itemLabel="admin" />
+			    </c:if>
+			</h:selectOneMenu>
+			</td>
+           </tr>
+       </c:forEach>
+	  		 
+     </tbody>	
+    </table>
+    </h:form>
+    <h:form>
+    <div id="backup">
+    <p>Realizar backup da base de dados daqui a
+	    <h:inputText size="1" maxlength="4" value="#{backupSingle.minutos}" required="true" requiredMessage="O número de minutos tem de ser um valor inteiro entre 1 e 1000">
+		         <f:converter converterId="quizz.TrimNumberConverter"/>
+		</h:inputText>
+     minutos. <h:commandButton styleClass="bt" value="Inicia backup" action="#{backupSingle.iniciaTimer()}"/></p>
+    </div>
+    </h:form>
+    </c:if>
+    <h:form>
+    <h:commandButton styleClass="bt" value="logout" action="#{user.logout}"/>
+    </h:form>
+    </div>
+    <h:messages infoClass="info" errorClass="error"/> 
+    
+</h:panelGroup>
+
+</h:body>
+</html>

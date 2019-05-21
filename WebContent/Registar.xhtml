@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"> 
+
+<h:head>
+	 <title>Registar Utilizador</title>
+	 <style>
+	  body{
+	 background-image: url("#{resource['blur.jpg']}");
+	 background-repeat: no-repeat;
+	 background-size: cover;
+	 font-family: Helvetica, sans-serif;
+	 color: 	#9FC4B2;
+	 text-align: center;
+	 display: flex;
+	 align-items: center;
+	 justify-content: space-evenly;
+	 flex-direction: column;
+	 height: 100vh;
+	 }
+	 .info {
+     color:green;
+     list-style-type: none;
+}
+	.error {
+	 color: red;
+	 list-style-type: none;
+	}
+	#div_messages {
+	display: block;
+	width: 100%;
+	}
+	#div_registar{    
+	 text-transform: uppercase;    
+	 border-radius: 5px;
+	 padding: 1rem;
+	 background-color:white;
+	 border: 1px solid black;
+	 }
+	 h1{
+	 text-align: center;
+	 }
+	 #div_registar .bt {
+	 text-align: center;
+	 display: block;
+	 color: #9FC4B2;
+	 background-color: 	white;
+	 border-radius: 5px;
+	 width: 100%;
+	 height: 40px;
+	 transition: all 0.2s;
+	 border: 1px solid #9FC4B2;
+	 }
+	 #div_registar .bt:hover {
+	 color: white;
+	 background-color: 	#9FC4B2;
+	 cursor: pointer;
+	 }
+	 #div_registar .inputField {
+	 border-radius: 5px;
+	 width: 100%;
+	  border: 1px solid #9FC4B2;
+	 }
+	 #div_registar .inputField:focus {
+	 outline: none;
+	 border: 2px solid #9FC4B2;
+	 }
+	 </style>
+</h:head> 
+<h:body>
+<div id="div_registar">
+	<h1>Registar<br></br>Utilizador</h1>
+	
+	<h:form id="registarForm">
+		    <p><h:inputText a:placeholder="Primeiro Nome" styleClass="inputField"  label="firstname" value="#{user.firstName}" required="true" requiredMessage="O primeiro nome tem de ter no mínimo 3 caracteres e no máximo 50."><f:converter converterId="quizz.TrimConverter"/></h:inputText></p>
+		    <p><h:inputText a:placeholder="Último Nome" styleClass="inputField"  value="#{user.lastName}" required="true" requiredMessage="O último nome tem de ter no mínimo 3 caracteres e no máximo 50."><f:converter converterId="quizz.TrimConverter"/></h:inputText></p>
+		    <p><h:inputText a:placeholder="Email" styleClass="inputField"  value="#{user.email}" required="true" requiredMessage="Tem de inserir um e-mail válido!" validatorMessage="Tem de inserir um e-mail válido!"><f:validateRegex
+			pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" /></h:inputText></p>
+		    <p><h:inputSecret a:placeholder="Password" styleClass="inputField"  value="#{user.password2}"/></p>
+		    <p><h:inputSecret a:placeholder="Password" styleClass="inputField"  value="#{user.password}" required="true" requiredMessage="Tem de inserir a password!"/></p>
+			<h:button value="Regressar ao login" styleClass="bt" outcome="Login" /><h:commandButton styleClass="bt" value="Registar" action="#{user.registarUser}" />
+	</h:form>
+	
+</div>
+<div id="div_messages">
+<h:messages infoClass="info" errorClass="error"/>
+</div>
+</h:body>
+</html>

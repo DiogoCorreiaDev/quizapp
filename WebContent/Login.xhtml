@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	 <title>Login</title>
+	 <style>
+	  body{
+	 color: #9FC4B2;
+	 background-image: url("#{resource['blur.jpg']}");
+	 background-repeat: no-repeat;
+	 background-size: cover;
+	 font-family: Helvetica, sans-serif;
+	 display: flex;
+	 align-items: center;
+	 justify-content: center;
+	 flex-direction: column;
+	 height: 100vh;
+	 }
+	 .info {
+     color:green;
+     list-style-type: none;
+	}
+	.error {
+	color: red;
+	list-style-type: none;
+	}
+	 .linkRegistar {
+	 color: blue;
+	 text-decoration: underline;
+	 background-color: white;
+	 border: none;
+	 margin: 0;
+	 }
+	 .linkRegistar:hover {
+	 cursor: pointer;
+	 }
+	 #div_login{    
+	 text-transform: uppercase;    
+	 border-radius: 5px;
+	 padding: 6px;
+	 background-color:white;
+	 border: 1px solid black;
+	 }
+	 h1{
+	 text-align: center;
+	 }
+	 #div_login .btLogin {
+	 text-align: center;
+	 display: block;
+	 color: #9FC4B2;
+	 background-color: 	white;
+	 border: 1px solid #9FC4B2;
+	 border-radius: 5px;
+	 width: 100%;
+	 height: 40px;
+	 transition: all 0.2s;
+	 }
+	 #div_login .btLogin:hover {
+	 color: white;
+	 background-color: 	#9FC4B2;
+	 cursor: pointer;
+	 }
+	 #div_login .inputField {
+	 border-radius: 5px;
+	 width: 100%;
+	 border: 1px solid #9FC4B2;
+	 }
+	 #div_login .inputField:focus {
+	 outline: none;
+	 border: 2px solid #9FC4B2;
+	 }
+	 #p_messages {
+	 align-self: flex-end;
+	 }
+	 </style>
+</h:head> 
+<h:body>
+<div id="div_login">
+	<h1>Login</h1>
+	<h:form id="myform">
+	    <p><h:inputText a:placeholder="Email" label="Email" styleClass="inputField" value="#{user.email}"/></p>
+	    <p><h:inputSecret a:placeholder="Password" styleClass="inputField" value="#{user.password}" /></p>
+	    <h:commandButton value="LOGIN" styleClass="btLogin" action="#{user.login}" />
+	    <p><h:commandButton styleClass="linkRegistar" value="Ainda não está registado? Clique aqui!" action="Registar" /></p>
+	</h:form>
+</div>
+<p id="p_messages"><h:messages globalOnly="true" style="color:red;margin:8px;"/></p>
+</h:body>
+</html>

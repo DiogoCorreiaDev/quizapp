@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://webservice" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://webservice" xmlns:intf="http://webservice" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://webservice" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getNumberOfQuizzes">
+    <complexType/>
+   </element>
+   <element name="getNumberOfQuizzesResponse">
+    <complexType>
+     <sequence>
+      <element name="getNumberOfQuizzesReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getNumberOfUsers">
+    <complexType/>
+   </element>
+   <element name="getNumberOfUsersResponse">
+    <complexType>
+     <sequence>
+      <element name="getNumberOfUsersReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getStatistics">
+    <complexType/>
+   </element>
+   <element name="getStatisticsResponse">
+    <complexType>
+     <sequence>
+      <element name="getStatisticsReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sayHello">
+    <complexType/>
+   </element>
+   <element name="sayHelloResponse">
+    <complexType>
+     <sequence>
+      <element name="sayHelloReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="sayHelloRequest">
+
+      <wsdl:part element="impl:sayHello" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getNumberOfUsersRequest">
+
+      <wsdl:part element="impl:getNumberOfUsers" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getNumberOfUsersResponse">
+
+      <wsdl:part element="impl:getNumberOfUsersResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getStatisticsRequest">
+
+      <wsdl:part element="impl:getStatistics" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getNumberOfQuizzesRequest">
+
+      <wsdl:part element="impl:getNumberOfQuizzes" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="sayHelloResponse">
+
+      <wsdl:part element="impl:sayHelloResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getNumberOfQuizzesResponse">
+
+      <wsdl:part element="impl:getNumberOfQuizzesResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getStatisticsResponse">
+
+      <wsdl:part element="impl:getStatisticsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="JavaEEService">
+
+      <wsdl:operation name="getNumberOfQuizzes">
+
+         <wsdl:input message="impl:getNumberOfQuizzesRequest" name="getNumberOfQuizzesRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getNumberOfQuizzesResponse" name="getNumberOfQuizzesResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getNumberOfUsers">
+
+         <wsdl:input message="impl:getNumberOfUsersRequest" name="getNumberOfUsersRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getNumberOfUsersResponse" name="getNumberOfUsersResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getStatistics">
+
+         <wsdl:input message="impl:getStatisticsRequest" name="getStatisticsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getStatisticsResponse" name="getStatisticsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sayHello">
+
+         <wsdl:input message="impl:sayHelloRequest" name="sayHelloRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:sayHelloResponse" name="sayHelloResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="JavaEEServiceSoapBinding" type="impl:JavaEEService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getNumberOfQuizzes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getNumberOfQuizzesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getNumberOfQuizzesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getNumberOfUsers">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getNumberOfUsersRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getNumberOfUsersResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getStatistics">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getStatisticsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getStatisticsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sayHello">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sayHelloRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sayHelloResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="JavaEEServiceService">
+
+      <wsdl:port binding="impl:JavaEEServiceSoapBinding" name="JavaEEService">
+
+         <wsdlsoap:address location="http://localhost:8080/ProjetoJavaEE/services/JavaEEService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

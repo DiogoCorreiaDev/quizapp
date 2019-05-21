@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#questionarios.xhtml"
+  PATH="/questionarios.xhtml" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#questionarios.xhtml:0" NAME="item"
+   PATH="/questionarios.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="Home::#Perfil.xhtml" NAME="output"
+    PATH="/Perfil.xhtml" TARGET="rules:#Perfil.xhtml" TITLE="Home" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Perfil.xhtml" PATH="/Perfil.xhtml" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Perfil.xhtml:0" NAME="item"
+   PATH="/Perfil.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="CriaQuizz::#CriarQuizzTemplate.xhtml"
+    NAME="output" PATH="/CriarQuizzTemplate.xhtml"
+    TARGET="rules:#CriarQuizzTemplate.xhtml" TITLE="CriaQuizz" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#CriarQuizzTemplate.xhtml"
+  PATH="/CriarQuizzTemplate.xhtml" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#CriarQuizzTemplate.xhtml:0" NAME="item"
+   PATH="/CriarQuizzTemplate.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="Home::#Perfil.xhtml" NAME="output"
+    PATH="/Perfil.xhtml" TARGET="rules:#Perfil.xhtml" TITLE="Home" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+</PROCESS>
